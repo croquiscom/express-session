@@ -157,7 +157,7 @@ function session(options) {
   // generates the new session
   store.generate = function(req){
     req.sessionID = generateId(req);
-    console.log({module: 'express-session', step: 'store.generate', session_id: req.sessionID })
+    console.log(JSON.stringify({module: 'express-session', step: 'store.generate', session_id: req.sessionID }))
     req.session = new Session(req);
     req.session.cookie = new Cookie(cookieOptions);
 
@@ -502,7 +502,7 @@ function session(options) {
       try {
         if (err || !sess) {
           if (err) {
-            console.log({module: 'express-session', step: 'store.get', error: err.message })
+            console.log(JSON.stringify({module: 'express-session', step: 'store.get', error: err.message }))
           }
           debug('no session found')
           generate()
