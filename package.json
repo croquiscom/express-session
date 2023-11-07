@@ -1,6 +1,6 @@
 {
   "name": "@croquiscom/express-session",
-  "version": "1.17.3-cr1",
+  "version": "1.17.3-cr2",
   "description": "Simple session middleware for Express",
   "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
   "contributors": [
