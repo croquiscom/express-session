@@ -492,6 +492,9 @@ function session(options) {
 
       try {
         if (err || !sess) {
+          if (err) {
+            console.log({module: 'express-session', step: 'store.get', error: err.message })
+          }
           debug('no session found')
           generate()
         } else {
