@@ -32,6 +32,7 @@
   "files": [
     "session/",
     "HISTORY.md",
+    "ignore-utils.js",
     "index.js"
   ],
   "engines": {
