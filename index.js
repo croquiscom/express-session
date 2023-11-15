@@ -27,6 +27,7 @@ var Cookie = require('./session/cookie')
 var MemoryStore = require('./session/memory')
 var Session = require('./session/session')
 var Store = require('./session/store')
+const {ignoreSetCookie} = require("./ignore-utils");
 
 // environment
 
@@ -246,7 +247,7 @@ function session(options) {
 
       // set cookie
       try {
-        setcookie(res, name, req.sessionID, secrets[0], req.session.cookie.data)
+        setcookie(res, name, req.sessionID, secrets[0], req.session.cookie.data, req)
       } catch (err) {
         defer(next, err)
       }
@@ -664,7 +665,11 @@ function issecure(req, trustProxy) {
  * @private
  */
 
-function setcookie(res, name, val, secret, options) {
+function setcookie(res, name, val, secret, options, req) {
+  if (ignoreSetCookie(req)) {
+    return;
+  }
+
   var signed = 's:' + signature.sign(val, secret);
   var data = cookie.serialize(name, signed, options);
 
