@@ -33,8 +33,7 @@
     "session/",
     "HISTORY.md",
     "ignore-utils.js",
-    "index.js",
-    "index.d.ts"
+    "index.js"
   ],
   "engines": {
     "node": ">= 0.8.0"
