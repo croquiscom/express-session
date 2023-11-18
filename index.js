@@ -245,9 +245,18 @@ function session(options) {
         touched = true
       }
 
+
+      if (ignoreSetCookie(req)) {
+        return;
+      }
+
+      if (req.ignore_set_cookie && req.ignore_set_cookie === true) {
+        return;
+      }
+
       // set cookie
       try {
-        setcookie(res, name, req.sessionID, secrets[0], req.session.cookie.data, req)
+        setcookie(res, name, req.sessionID, secrets[0], req.session.cookie.data)
       } catch (err) {
         defer(next, err)
       }
@@ -665,11 +674,7 @@ function issecure(req, trustProxy) {
  * @private
  */
 
-function setcookie(res, name, val, secret, options, req) {
-  if (ignoreSetCookie(req)) {
-    return;
-  }
-
+function setcookie(res, name, val, secret, options) {
   var signed = 's:' + signature.sign(val, secret);
   var data = cookie.serialize(name, signed, options);
 
