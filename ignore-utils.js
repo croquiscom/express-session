@@ -1,4 +1,4 @@
-const reg_exp = /store(?=\.)(|.+)\.zigzag\.kr/i
+const reg_exp = /(store|content)(?=\.)(|.+)\.zigzag\.kr/i
 
 function ignoreSetCookie(req) {
   if (!req || !req.headers) {
